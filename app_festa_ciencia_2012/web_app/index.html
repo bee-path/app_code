@@ -1,0 +1,500 @@
+<html>
+
+<head>
+<title>Bee-path :: Experiment in human mobility</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+-->
+<link rel="stylesheet" href="jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.css" />
+<script src="jquery.mobile-1.1.0/jquery.js"></script>
+<script src="jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+<script src="jquery.cookies.js"></script>
+<script type="text/javascript" src="beepath.js"></script>
+<style type="text/css">
+	body{ background-color:#E83725;}
+	table { width:100%; border-bottom:1px solid #ccc; border-collapse: collapse; }
+	th { text-align:left; margin-right:50px; display:none; }
+	th h3 { margin:.6em 0; }
+	th, td { vertical-align:top; border-top:1px solid #ccc; padding: 4px 10px; }
+	.header{ background-color:#E83725;}
+	.footer{ background-color:#E83725;}
+	.ui-bar-a { 
+	   border: 1px solid #2A2A2A; 
+	   background:#111111;
+	}
+	.errorFormField{
+		color:#FF0000;
+		display:none;
+	}
+</style>
+</head>
+
+<body>
+	
+<div data-role="page" id="languagePage">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home">Home</a>
+        <h1></h1>
+    </div>
+    <div data-role="content">
+		<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+        <p><a id="changePageToInformation-ca" data-role="button" data-transition="slide" >Catal&agrave;</a></p>
+		<p><a id="changePageToInformation-es" data-role="button" data-transition="slide" >Castellano</a></p>
+		<p><a id="changePageToInformation-en" data-role="button" data-transition="slide" >English</a></p>
+    </div>
+</div>
+
+<!--
+******************************************************************************************************************
+// CATALÀ PAGES
+******************************************************************************************************************
+ -->
+<div data-role="page" id="infoPage-ca">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Inici</a>
+        <h1>Com et mous?</h1>
+		<a data-rel="back" data-icon="back">Enrera</a>
+    </div>
+    <div data-role="content">
+	<p style="text-align:center;">Bee-Path: Experiment col&middot;lectiu sobre mobilitat humana</p>
+	<p style="text-align:center;"><img src="beePathPosition.png"></p>
+	<p style="text-align:center;">Vols saber com et desplaces per les activitats de la Festa? Com un taur&oacute;? O m&eacute;s aviat com una abella? Rastreges el Parc com una guineu a la cerca de la millor activitat? O simplement voltes desorientat i et mous tan err&agrave;ticament com ho fa un gra de pol&middot;len? Ets imprescindible perqu&egrave; sigui tot un &eacute;xit!</p>
+		<p><a class="changePageToRegistration" data-role="button" data-transition="slide">Registrar-se</a></p>
+	</div>
+</div>
+
+<div data-role="page" id="registrationPage-ca">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Inici</a>
+        <h1>Registre</h1>
+		<a data-rel="back" data-icon="back">Enrera</a>
+    </div>
+    <div data-role="content">
+        <form action="index.html" method="get" id="myForm-ca">
+		<table margin="0">
+			<tr>
+				<td>
+					Omple aquesta informaci&oacute; i comen&ccedil;a l'experiment.
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<p>Email:</p>
+					<label for="text-full" class="ui-hidden-accessible">Email:</label>
+			        <input type="text" name="name"  class="emailInput" id="email-ca" />
+					<p id="" class="errorFormField emailError">L'email &eacute;s incorrecte o est&agrave; buit.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>G&egrave;nere:</p>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+				         	<input type="radio" name="radio-gender-ca" id="radio-full-4" value="m" />
+				         	<label id="s2male" for="radio-full-4">Home</label>
+				         	<input type="radio" name="radio-gender-ca" id="radio-full-5" value="f"  />
+				         	<label id="s2female" for="radio-full-5">Dona</label>
+				    </fieldset>
+					<p id="" class="errorFormField genderError">No has senyalat el teu g&egrave;nere.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2age">Edat:</p>
+					<fieldset data-role="controlgroup">
+				         	<input type="radio" name="radio-age-ca" id="radio-full-1" value="0-25" />
+				         	<label for="radio-full-1">0-25</label>
+				         	<input type="radio" name="radio-age-ca" id="radio-full-2" value="25-40"  />
+				         	<label for="radio-full-2">25-40</label>
+				         	<input type="radio" name="radio-age-ca" id="radio-full-3" value="40-65"  />
+				         	<label for="radio-full-3">40-65</label>
+							<input type="radio" name="radio-age-ca" id="radio-full-4" value="65+"  />
+				         	<label for="radio-full-4">65+</label>
+				    </fieldset>
+				    <p id="" class="errorFormField ageError">No has senyalat el teu grup d'edat.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2howMove">Ara diga'ns com penses que et mour&agrave;s:</p>
+					<fieldset data-role="controlgroup" class="required">
+				         	<input type="radio" name="radio-move-ca" id="radio-full-1" value="shark" />
+				         	<label id="s2opshark" for="radio-full-1">Taur&oacute;</label>
+				         	<input type="radio" name="radio-move-ca" id="radio-full-2" value="fox"  />
+				         	<label id="s2opfox" for="radio-full-2">Guineu</label>
+				         	<input type="radio" name="radio-move-ca" id="radio-full-3" value="dollar"  />
+				         	<label id="s2opdollar" for="radio-full-3">Bitllet de dollar</label>
+							<input type="radio" name="radio-move-ca" id="radio-full-4" value="bee"  />
+				         	<label id="s2opbee" for="radio-full-4">Abella</label>
+							<input type="radio" name="radio-move-ca" id="radio-full-5" value="pollen"  />
+				         	<label id="s2oppollen" for="radio-full-5">Pol&middot;len en suspensi&oacute;</label>
+							<input type="radio" name="radio-move-ca" id="radio-full-6" value="cell"  />
+				         	<label id="s2opcell" for="radio-full-6">C&egrave;l&middot;lula</label>
+				    </fieldset>
+				    <p id="" class="errorFormField moveError">No has sel&middot;leccionat com creus que et mous.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2experiment">Com fas l'experiment?</p>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+				         	<input type="radio" name="radio-alone-ca" id="radio-full-4" value="a" checked="checked" />
+				         	<label id="s2alone" for="radio-full-4">Sol</label>
+				         	<input type="radio" name="radio-alone-ca" id="radio-full-5" value="t"  />
+				         	<label id="s2together" for="radio-full-5">Acompanyat</label>
+				    </fieldset>
+				</td>
+			</tr>
+		</table>
+
+		</form>
+		<p><a  class="callAjaxFormRegistration" data-role="button" data-transition="slide">Envia i comen&ccedil;a l'experiment</a></p>
+    </div>
+</div>
+
+<div data-role="page" id="sendPositionPage-ca">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Inici</a>
+        <h1>Experiment</h1>
+    </div>
+    <div data-role="content">
+		<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+		<div id="currentGPSDataDisplay">
+		<p style="text-align:center;">Ara el teu mobil est&agrave; enviant la posici&oacute; GPS cada 15 segons</p>
+		<p style="text-align:center;">
+	    	<span id="latLabel">Lat:</span><span id="latDisplay-ca"></span></br>
+			<span id="lonLabel">Lon:</span><span id="lonDisplay-ca"></span></br>
+			<span id="accuracyLabel">Precisi&oacute;-gps:</span><span id="accuracyDisplay-ca"></span>m</br>
+		</p>
+		<p style="text-align:center;">Posa el teu mobil en un lloc amb visi&oacute; directa al cel per aumentar la seva presici&oacute;.</p>
+
+		</div>
+		<div id="currentGPSDataDisplayError" class="errorFormField">
+			<p style="text-align:center;">Error: El dispositiu no t&eacute; 'Location Api' disponible per obtenir la posici&oacute; GPS.</p>
+		</div>
+		<p><a class="changePageToCredits" data-role="button" data-transition="slide">Acabar l'experiment </a></p>
+		<p style="text-align:center;">Un cop acabis l'experiment rebr&agrave;s el recorregut que has fet al teu email</p>
+    </div>
+</div>
+
+<div data-role="page" id="creditsPage-ca">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Inici</a>
+        <h1>Cr&egrave;dits</h1>
+    </div>
+    <div data-role="content">
+	<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+
+	<p>Gr&agrave;cies per participar en aquest experiment. Vine al nostre espai i et donarem m&eacute;s detalls d'aquest projecte de ci&egrave;ncia ciutadana. Et mantindrem informat dels progressos del projecte. L'experiment &eacute;s el primer realitzat d'aquest tipus a Barcelona i tu ha estat imprescindible per a qu&egrave; sigui tot un &eacute;xit!
+	Per a m&eacute;s informaci&oacute; visita: <a href="http://www.bee-path.net">www.bee-path.net</a></p>
+	<p id="creditsContent" style="text-align:center;">Cr&egrave;dits</p>
+	<p style="text-align:center;">Experiment promogut per Barcelona Laboratori Cultural
+	Equip: Oleguer Sagarra, Mario Guti&eacute;rrez-Roig, Albert D&iacute;az-Guilera, 
+	Josep Perell&oacute; (Complexitat.cat-UB), Ionas Erb, Jos&eacute; Espinosa-Carrasco, 
+	Carole Faviez, Cedric Notredame, Mara Dierssen (Centre de Regulaci&oacute; 
+	Gen&ograve;mica), Frederic Bartumeus (Centre d'Estudis Avancats de 
+	Blanes-CSIC), John Palmer (CEAB-CSIC i Princeton), Berta Paco 
+	(dinamitzadora), Xavier Mart&iacute; (enginyer inform&agrave;tic), Mar Canet 
+	(enginyer inform&agrave;tic i artista), Fundaci&oacute; i2CAT, Direcci&oacute; Creativitat
+	i Innovaci&oacute; de l'ICUB (Ajuntament de Barcelona).</p>
+	</div>
+</div>
+
+<!--
+******************************************************************************************************************
+// CASTELLANO PAGES
+******************************************************************************************************************
+ -->
+<div data-role="page" id="infoPage-es">
+	<div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Inicio</a>
+	    <h1>Com et mous?</h1>
+		<a data-rel="back" data-icon="back">Atr&aacute;s</a>
+	</div>
+	<div data-role="content">
+	<p style="text-align:center;">Bee-Path: Experimento colectivo sobre movilidad humana</p>
+	<p style="text-align:center;"><img src="beePathPosition.png"></p>
+	<p style="text-align:center;">&#191;Quieres saber c&oacute;mo te desplazas por las actividades de la Fiesta? Como un tibur&oacute;n? O m&aacute;s bien como una abeja? Rastreas el Parque como un zorro en busca de la mejor actividad? O simplemente andas desorientado y te mueves tan err&aacute;ticamente como lo hace un grano de polen? Eres imprescindible para que sea todo un &eacute;xito!</p>
+	<p><a  class="changePageToRegistration" data-role="button" data-transition="slide">Registrarse</a></p>
+	</div>
+</div>
+
+<div data-role="page" id="registrationPage-es">
+    <div data-role="header">
+		<a href="index.html" data-icon="home" class="home-link">Inicio</a>
+        <h1>Registro</h1>
+		<a data-rel="back" data-icon="back">Atr&aacute;s</a>
+    </div>
+    <div data-role="content">
+        <form action="index.html" method="get" id="myForm-es">
+		<table margin="0">
+			<tr>
+				<td>
+					<p>Danos alguna informaci&oacute;n antes de empezar el experimento.</p>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<p>Email:</p>
+					<label for="text-full" class="ui-hidden-accessible">Email:</label>
+			        <input type="text" name="name"  class="emailInput" id="email-es" />
+					<p id="" class="errorFormField emailError">El email es incorrecto o vacio.</p>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<p>G&eacute;nero:</p>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+				         	<input type="radio" name="radio-gender-es" id="radio-full-4" value="m" />
+				         	<label id="s2male" for="radio-full-4">Hombre</label>
+				         	<input type="radio" name="radio-gender-es" id="radio-full-5" value="f"  />
+				         	<label id="s2female" for="radio-full-5">Mujer</label>
+				    </fieldset>
+					<p id="" class="errorFormField genderError">Genero no ha sido seleccionado.</p>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<p id="s2age">Edad:</p>
+					<fieldset data-role="controlgroup">
+				         	<input type="radio" name="radio-age-es" id="radio-full-1" value="0-25" />
+				         	<label for="radio-full-1">0-25</label>
+				         	<input type="radio" name="radio-age-es" id="radio-full-2" value="25-40"  />
+				         	<label for="radio-full-2">25-40</label>
+				         	<input type="radio" name="radio-age-es" id="radio-full-3" value="40-65"  />
+				         	<label for="radio-full-3">40-65</label>
+							<input type="radio" name="radio-age-es" id="radio-full-4" value="65+"  />
+				         	<label for="radio-full-4">65+</label>
+				    </fieldset>
+				    <p id="" class="errorFormField ageError">Edad no ha sido seleccionada.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2howMove">Ahora dinos c&#243;mo piensas que te mover&#225;s:</p>
+					<fieldset data-role="controlgroup" class="required">
+				         	<input type="radio" name="radio-move-es" id="radio-full-1" value="shark" />
+				         	<label id="s2opshark" for="radio-full-1">Tibur&oacute;n</label>
+				         	<input type="radio" name="radio-move-es" id="radio-full-2" value="fox"  />
+				         	<label id="s2opfox" for="radio-full-2">Zorro</label>
+				         	<input type="radio" name="radio-move-es" id="radio-full-3" value="dollar"  />
+				         	<label id="s2opdollar" for="radio-full-3">Billete de dollar</label>
+							<input type="radio" name="radio-move-es" id="radio-full-4" value="bee"  />
+				         	<label id="s2opbee" for="radio-full-4">Abeja</label>
+							<input type="radio" name="radio-move-es" id="radio-full-5" value="pollen"  />
+				         	<label id="s2oppollen" for="radio-full-5">Polen en suspensi&#243;n</label>
+							<input type="radio" name="radio-move-es" id="radio-full-6" value="cell"  />
+				         	<label id="s2opcell" for="radio-full-6">C&eacute;lula</label>
+				    </fieldset>
+				    <p id="" class="errorFormField moveError">No has seleccionado como crees que te mueves.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2experiment">C&oacute;mo haces el experimento?</p>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+				         	<input type="radio" name="radio-alone-es" id="radio-full-4" value="a" checked="checked" />
+				         	<label id="s2alone" for="radio-full-4">Solo</label>
+				         	<input type="radio" name="radio-alone-es" id="radio-full-5" value="t"  />
+				         	<label id="s2together" for="radio-full-5">Acompa&ntilde;ado</label>
+				    </fieldset>
+				</td>
+			</tr>
+		</table>
+
+		</form>
+		<p><a  class="callAjaxFormRegistration" data-role="button" data-transition="slide">Enviar y empezar el experimento</a></p>
+    </div>
+</div>
+
+<div data-role="page" id="sendPositionPage-es">
+    <div data-role="header">
+		<a href="index.html" data-icon="home" class="home-link">Inicio</a>
+        <h1>Registro</h1>
+    </div>
+    <div data-role="content">
+		<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+		<div id="currentGPSDataDisplay">
+		<p style="text-align:center;">Tu m&oacute;vil enviar&aacute; tu posici&oacute;n cada 15 segundos. </p>
+		<p style="text-align:center;">
+	    	<span id="latLabel">Lat:</span><span id="latDisplay-es"></span></br>
+			<span id="lonLabel">Lon:</span><span id="lonDisplay-es"></span></br>
+			<span id="accuracyLabel">Presici&oacute;n-gps:</span><span id="accuracyDisplay-es"></span>m</br>
+		</p>
+		<p style="text-align:center;">Pon tu m&#243;vil en un lugar que tenga vision directa del cielo para aumentar su presici&oacute;n.</p>
+		</div>
+		<div id="" class="errorFormField currentGPSDataDisplayError">
+			<p style="text-align:center;">Error: Este dispositivo no tiene 'Location Api' disponible para obtener posici&oacute;n GPS.</p>
+		</div>
+		<p><a class="changePageToCredits" data-role="button" data-transition="slide">Finalizar experimento</a></p>
+		<p style="text-align:center;">Una vez finalizado el experimento recibir&aacute;s el recorrido hecho por email.</p>
+    </div>
+</div>
+
+<div data-role="page" id="creditsPage-es">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Inicio</a>
+        <h1>Cr&eacute;ditos</h1>
+		<a data-rel="back" data-icon="back">Atr&aacute;s</a>
+    </div>
+    <div data-role="content">
+	<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+
+	<p style="text-align:center;">Gracias por participar en este experimento. Ven a nuestro espacio y te daremos m&#225;s detalles de este proyecto de ciencia ciudadana. Te mantendremos informado de los progresos del proyecto. El experimento es el primero realizado de este tipo en Barcelona y t&#250; ha sido imprescindible para que sea todo un &#233;xito! <br/>Para m&#225;s informaci&#243;n visita: <a href="http://www.bee-path.net">www.bee-path.net</a></p>
+	<p id="creditsContent" style="text-align:center;">Cr&eacute;ditos</p>
+	<p style="text-align:center;">Experimento promovido por Barcelona Laboratori Cultural <br/>Equipo: Oleguer Sagarra, Mario Guti&#233;rrezRoig, Albert D&#237;azGuilera, Josep Perell&#243; (Complexitat.cat-UB), Ionas Erb, Jos&#233; EspinosaCarrasco, Carole Faviez, Cedric Notredame, Mara Dierssen (Centro de Regulaci&#243;n Gen&#243;mica), Frederic Bartumeus (Centro de Estudios Avanzados de Blanes-CSIC), John Palmer (CEAB-CSIC, Princeton), Berta Paco (dinamizadora), Xavier Mart&#237; (ingeniero inform&#225;tico), Mar Canet (ingeniero inform&#225;tico y artista), Fundaci&#243; i2CAT, Direcci&#243; de Creativitat i Innovaci&#243;n del ICUB (Ajuntament de Barcelona).</p>
+	</div>
+</div>
+
+
+<!--
+******************************************************************************************************************
+// ENGLISH PAGES
+******************************************************************************************************************
+ -->
+
+<div data-role="page" id="infoPage-en">
+		<div data-role="header">
+			<a href="index.html" data-icon="home" class="home-link">Home</a>
+	        <h1>Com et mous?</h1>
+			<a data-rel="back" data-icon="back">Go back</a>
+	    </div>
+		<div data-role="content">
+		<p style="text-align:center;">Bee-Path: Experiment group on human mobility</p>
+		<p style="text-align:center;"><img src="beePathPosition.png"></p>
+		<p style="text-align:center;">Do you want to know how you move through the activities of the Festa? Like a shark? Or more like a bee? Sweep the Park as a fox in search of the best activity? Or just disoriented and erratically moving as a grain of pollen? Your participation is essential to be a success!</p>
+		<p><a class="changePageToRegistration" data-role="button" data-transition="slide">Go to registration</a></p>
+		</div>
+</div>
+
+<div data-role="page" id="registrationPage-en">
+    <div data-role="header">
+		<a href="index.html" data-icon="home" class="home-link">Home</a>
+        <h1>Registration</h1>
+		<a data-rel="back" data-icon="back">Go back</a>
+    </div>
+    <div data-role="content">
+        <form action="index.html" method="get" id="myForm-en">
+		<table margin="0">
+			<tr>
+				<td>
+					<p>Give some us information and start experiment.</p>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<p>Email:</p>
+					<label for="text-full" class="ui-hidden-accessible">Email:</label>
+			        <input type="text" name="name" class="emailInput" id="email-en" />
+					<p id="" class="errorFormField emailError">Email is incorrect or empty.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Gender:</p>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+				         	<input type="radio" name="radio-gender-en" id="radio-full-4" value="m" />
+				         	<label id="s2male" for="radio-full-4">Male</label>
+				         	<input type="radio" name="radio-gender-en" id="radio-full-5" value="f"  />
+				         	<label id="s2female" for="radio-full-5">Female</label>
+				    </fieldset>
+					<p id="" class="errorFormField genderError">Gender is not selected.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2age">Age:</p>
+					<fieldset data-role="controlgroup">
+				         	<input type="radio" name="radio-age-en" id="radio-full-1" value="0-25" />
+				         	<label for="radio-full-1">0-25</label>
+				         	<input type="radio" name="radio-age-en" id="radio-full-2" value="25-40"  />
+				         	<label for="radio-full-2">25-40</label>
+				         	<input type="radio" name="radio-age-en" id="radio-full-3" value="40-65"  />
+				         	<label for="radio-full-3">40-65</label>
+							<input type="radio" name="radio-age-en" id="radio-full-4" value="65+"  />
+				         	<label for="radio-full-4">65+</label>
+				    </fieldset>
+				    <p id="" class="errorFormField genderError">Age is not selected.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2howMove">How you think you move:</p>
+					<fieldset data-role="controlgroup" class="required">
+				         	<input type="radio" name="radio-move-en" id="radio-full-1" value="shark" />
+				         	<label id="s2opshark" for="radio-full-1">Shark</label>
+				         	<input type="radio" name="radio-move-en" id="radio-full-2" value="fox"  />
+				         	<label id="s2opfox" for="radio-full-2">Fox</label>
+				         	<input type="radio" name="radio-move-en" id="radio-full-3" value="dollar"  />
+				         	<label id="s2opdollar" for="radio-full-3">Dollar bill</label>
+							<input type="radio" name="radio-move-en" id="radio-full-4" value="bee"  />
+				         	<label id="s2opbee" for="radio-full-4">Bee</label>
+							<input type="radio" name="radio-move-en" id="radio-full-5" value="pollen"  />
+				         	<label id="s2oppollen" for="radio-full-5">Pollen</label>
+							<input type="radio" name="radio-move-en" id="radio-full-6" value="cell"  />
+				         	<label id="s2opcell" for="radio-full-6">Cell</label>
+				    </fieldset>
+				    <p id="" class="errorFormField moveError">Kind of move is not selected.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p id="s2experiment">How do you do the experiment?</p>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+				         	<input type="radio" name="radio-alone-en" id="radio-full-4" value="a" checked="checked" />
+				         	<label id="s2alone" for="radio-full-4">Alone</label>
+				         	<input type="radio" name="radio-alone-en" id="radio-full-5" value="t"  />
+				         	<label id="s2together" for="radio-full-5">Together</label>
+				    </fieldset>
+				</td>
+			</tr>
+		</table>  
+		</form>
+		<p><a class="callAjaxFormRegistration" data-role="button" data-transition="slide">Send and start experiment</a></p>
+    </div>
+</div>
+
+<div data-role="page" id="sendPositionPage-en">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Home</a>
+        <h1>Experiment</h1>
+    </div>
+    <div data-role="content">
+		<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+		<div id="currentGPSDataDisplay">
+		<p style="text-align:center;">Now your mobile is sending GPS position every 15 seconds</p>
+		<p style="text-align:center;">
+	    	<span id="latLabel">Lat:</span><span id="latDisplay-en"></span></br>
+			<span id="lonLabel">Lon:</span><span id="lonDisplay-en"></span></br>
+			<span id="accuracyLabel">gpsAccuracy:</span><span id="accuracyDisplay-en"></span>m</br>
+		</p>
+		<p style="text-align:center;">Place mobile in a open sky place to increase the accuracy.</p>
+		</div>
+		<div id="" class="errorFormField currentGPSDataDisplayError">
+			<p style="text-align:center;">Error: The device not have 'Location Api' available to obtain GPS position.</p>
+		</div>
+		<p><a class="changePageToCredits" data-role="button" data-transition="slide">Finish experiment and send path done</a></p>
+    </div>
+</div>
+
+<div data-role="page" id="creditsPage-en">
+    <div data-role="header">
+	    <a href="index.html" data-icon="home" class="home-link">Home</a>
+        <h1>Credits</h1>
+		
+    </div>
+    <div data-role="content">
+	<p style="text-align:center;"><img src="beePathLogoRed.png"></p>
+	<p style="text-align:center;">	Thank you for participating in this experiment. Come to our space and we will give you more details of this citizen science project. We will keep you informed of progress of the project. The experiment is the first of its kind conducted in Barcelona and your participation has been essential! For more information visit: <a href="http://www.bee-path.net">www.bee-path.net</a></p>
+	<p id="creditsContent" style="text-align:center;">Credits</p>
+	<p style="text-align:center;">Team: Oleguer Sagarra, Mario Guti&#233;rrezRoig, Albert D&#237;azGuilera, Josep Perell&#243; (Complexitat.cat-UB), Ionas Erb, Jos&#233; EspinosaCarrasco, Carole Faviez, Cedric Notredame, Mara Dierssen (Centro de Regulaci&#243;n Gen&#243;mica), Frederic Bartumeus (Centro de Estudios Avanzados de Blanes-CSIC), John Palmer (CEAB-CSIC, Princeton), Berta Paco (dinamizadora), Xavier Mart&#237; (ingeniero inform&#225;tico), Mar Canet (ingeniero inform&#225;tico y artista), Fundaci&#243; i2CAT, Direcci&#243; de Creativitat i Innovaci&#243;n del ICUB (Ayuntamiento de Barcelona).</p>
+	</div>
+</div>
+
+</body>
+</html>
